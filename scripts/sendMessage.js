@@ -33,6 +33,8 @@ async function sendCCIPMessage() {
   // Estimated gas: 418479
   // Adding 10% buffer to the gas estimate: 418479 + 41847 = 460326
 
+  const gasLimit = (gasEstimate * BigInt(110)) / BigInt(100);
+
   console.log(
     "Calling transferUsdc() on TransferUSDC contract from avalancheFuji"
   );
@@ -40,7 +42,7 @@ async function sendCCIPMessage() {
     sepoliaConfig.chainSelector,
     crossChainReceiverAddress,
     1000000,
-    460326 // 500,000 gas limit (Value Hardcoded)
+    gasLimit
   );
   console.log(`Transaction hash: ${tx.hash}`);
 
